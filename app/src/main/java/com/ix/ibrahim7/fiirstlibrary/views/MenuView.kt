@@ -41,8 +41,8 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         }
     }
 
-    fun addItem(item: MenuItem) {
-        list_adapter.data.add(item)
+    fun addItem(id: Int,icon:Int,isSelected:Boolean) {
+        list_adapter.data.add(MenuItem(id, icon, isSelected))
         list_adapter.notifyDataSetChanged()
     }
 
@@ -52,22 +52,22 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
     }
 
     fun setSelectedTint(color: Int) {
-        list_adapter.changeSelectedTint()
-        list_adapter.selectedTint = color
+        Constant.selectedTintActive = true
+        Constant.selectedTint = color
         list_adapter.notifyDataSetChanged()
     }
 
     fun setSelectedImageResource(drawable: Int) {
-        list_adapter.setImageResource()
-        list_adapter.image=list_adapter.setselectedImageResource(drawable)
+        Constant.selectedImageChange = true
+        Constant.image=list_adapter.setselectedImageResource(drawable)
         list_adapter.notifyDataSetChanged()
     }
 
 
 
     fun setIconTint(color: Int) {
-        list_adapter.changeIconTint()
-        list_adapter.iconTint = color
+        Constant.iconTintActive = true
+        Constant.iconTint = color
         list_adapter.notifyDataSetChanged()
     }
 

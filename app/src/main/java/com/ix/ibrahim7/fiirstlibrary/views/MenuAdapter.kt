@@ -23,14 +23,14 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
 
     private var selectedItemPos = 0
 
-    var selectedTint:Int?=null
+    /*var selectedTint:Int?=null
     var iconTint:Int?=null
 
     var selectedTintActive=false
     var iconTintActive=false
     var selectedImageChange=false
 
-    var image=0
+    var image=0*/
 
     class MenuViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
@@ -53,18 +53,18 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
 
         holder.itemView.apply {
           when {
-              selectedTintActive -> {
-                  item_menu_selected.drawable.setTint(selectedTint!!)
+              Constant.selectedTintActive -> {
+                  item_menu_selected.drawable.setTint(Constant.selectedTint!!)
                   /* Log.e("eee selected",selectedTintActive.toString())
-                    Log.e("eee icon",iconTintActive.toString())*/
+                                Log.e("eee icon",iconTintActive.toString())*/
               }
-              iconTintActive -> {
+              Constant.iconTintActive -> {
                   /* Log.e("eee icon",iconTintActive.toString())*/
-                  item_menu_icon.setColorFilter(iconTint!!)
+                  item_menu_icon.setColorFilter(Constant.iconTint!!)
               }
-              selectedImageChange ->{
-                  item_menu_selected.setImageResource(image)
-                 // notifyDataSetChanged()
+              Constant.selectedImageChange -> {
+                  item_menu_selected.setImageResource(Constant.image)
+                  // notifyDataSetChanged()
               }
           }
 
@@ -86,18 +86,6 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
 
     }
 
-    fun changeIconTint(){
-        iconTintActive = true
-    }
-
-
-    fun changeSelectedTint(){
-        selectedTintActive = true
-    }
-
-    fun setImageResource(){
-        selectedImageChange = true
-    }
 
     fun setselectedImageResource(drawable: Int):Int{
         return drawable
