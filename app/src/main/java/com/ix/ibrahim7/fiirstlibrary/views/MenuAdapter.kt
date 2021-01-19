@@ -1,6 +1,7 @@
 package com.ix.ibrahim7.fiirstlibrary.views
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -16,20 +18,26 @@ import kotlinx.android.synthetic.main.item_menu.view.*
 import java.util.*
 
 
-class MenuAdapter(var activity: Activity, var data: ArrayList<MenuItem>, val itemclick: onClick) :
+class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemclick: onClick) :
         RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     private var selectedItemPos = 0
+
     var selectedTint:Int?=null
     var iconTint:Int?=null
+
     var selectedTintActive=false
     var iconTintActive=false
+    var selectedImageChange=false
+
+    var image=0
+
     class MenuViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-        val itemView = LayoutInflater.from(activity).inflate(R.layout.item_menu, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_menu, parent, false)
         return MenuViewHolder(
             itemView
         )
@@ -53,6 +61,10 @@ class MenuAdapter(var activity: Activity, var data: ArrayList<MenuItem>, val ite
               iconTintActive -> {
                   /* Log.e("eee icon",iconTintActive.toString())*/
                   item_menu_icon.setColorFilter(iconTint!!)
+              }
+              selectedImageChange ->{
+                  item_menu_selected.setImageResource(image)
+                 // notifyDataSetChanged()
               }
           }
 
@@ -82,6 +94,15 @@ class MenuAdapter(var activity: Activity, var data: ArrayList<MenuItem>, val ite
     fun changeSelectedTint(){
         selectedTintActive = true
     }
+
+    fun setImageResource(){
+        selectedImageChange = true
+    }
+
+    fun setselectedImageResource(drawable: Int):Int{
+        return drawable
+    }
+
 
 
     interface onClick {

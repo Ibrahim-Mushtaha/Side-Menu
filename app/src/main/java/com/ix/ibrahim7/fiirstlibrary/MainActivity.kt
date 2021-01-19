@@ -14,39 +14,50 @@ class MainActivity : AppCompatActivity()  ,ActionListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        menu1.setData(
+        menu1.setOnClickListener {
+
+        }
+
+        menu1.addItem(
             MenuItem(
-                R.drawable.ic_baseline_home_black,
                 55,
+                R.drawable.ic_baseline_home_black,
                 true
             )
         )
-        menu1.setData(
+        menu1.addItem(
             MenuItem(
-                R.drawable.ic_baseline_home_black,
                 44,
-                false
-            )
-        )
-        menu1.setData(
-            MenuItem(
                 R.drawable.ic_baseline_home_black,
+                false
+            )
+        )
+        menu1.addItem(
+            MenuItem(
                 33,
+                R.drawable.ic_baseline_home_black,
                 false
             )
         )
 
 
-        menu1.setIconTint(Color.BLUE)
-       menu1.setSelectedTint(Color.RED)
+    /*    menu1.setIconTint(Color.BLUE)
+       menu1.setSelectedTint(Color.RED)*/
        menu1.setCallback(this)
+        menu1.setSelectedImageResource(R.drawable.ic_launcher_background)
 
 
+        menu1.setClickItemListener(object :MenuView.OnClickItemListener{
+            override fun onClickItem(id: Int) {
+                Log.e("eee click2",id.toString())
+            }
+
+        })
 
     }
 
 
     override fun clickListener(item: MenuItem) {
-        Log.e("eee click",item.code.toString())
+        Log.e("eee click",item.id.toString())
     }
 }
