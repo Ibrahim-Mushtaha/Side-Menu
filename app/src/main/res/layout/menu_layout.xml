@@ -5,6 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="24sp"
+    android:layout_margin="4dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="4dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     android:elevation="8dp"
     android:src="@drawable/ic_launcher_background">
 

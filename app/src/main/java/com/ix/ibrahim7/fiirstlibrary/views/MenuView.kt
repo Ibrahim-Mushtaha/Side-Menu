@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
@@ -14,20 +15,19 @@ import com.ix.ibrahim7.fiirstlibrary.views.MenuAdapter
 class MenuView(context: Context,attributeSet: AttributeSet) : FrameLayout(context,attributeSet),
     MenuAdapter.onClick {
 
+    var actionListener: ActionListener? = null
     private val list_adapter by lazy {
         MenuAdapter(
             context as Activity,
             ArrayList(),
-            color,this
+            this
         )
     }
 
 
     lateinit var recyclerView: RecyclerView
-    var color: Int
 
     init {
-        color = Color.BLUE
         initView()
     }
 
@@ -46,15 +46,31 @@ class MenuView(context: Context,attributeSet: AttributeSet) : FrameLayout(contex
         list_adapter.notifyDataSetChanged()
     }
 
-    fun setSelectedColor(color: Int){
-        list_adapter.changeStatus()
-        list_adapter.changeColor = color
+    fun setSelectedTint(color: Int){
+        list_adapter.changeSelectedTint()
+        list_adapter.selectedTint = color
         list_adapter.notifyDataSetChanged()
+        list_adapter.selectedTintActive =true
+    }
+
+    fun setIconTint(color: Int){
+        list_adapter.changeIconTint()
+        list_adapter.iconTint = color
+        list_adapter.notifyDataSetChanged()
+        list_adapter.iconTintActive =true
     }
 
     override fun onClickListener(menuitem: MenuItem, position: Int) {
-
+        if (actionListener != null) {
+            actionListener!!.clickListener(menuitem)
+        }
     }
+
+    fun setCallback(actionListener: ActionListener) {
+        this.actionListener = actionListener
+    }
+
+
 
 
 }
