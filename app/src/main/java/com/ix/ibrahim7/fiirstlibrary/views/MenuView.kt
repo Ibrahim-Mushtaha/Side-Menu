@@ -1,23 +1,19 @@
 package com.ix.ibrahim7.fiirstlibrary.views
 
-import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.fiirstlibrary.R
-import com.ix.ibrahim7.fiirstlibrary.views.MenuAdapter
 
-class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(context, attributeSet),
+
+class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, attr),
     MenuAdapter.onClick {
 
-    var actionListener: ActionListener? = null
+    var clickListener: ClickListener? = null
     private var listener: OnClickItemListener? = null
 
     private val list_adapter by lazy {
@@ -26,6 +22,8 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
 
 
     lateinit var recyclerView: RecyclerView
+    lateinit var cardView: CardView
+    lateinit var constraintLayout: ConstraintLayout
 
     init {
         initView()
@@ -35,10 +33,18 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         val view = View.inflate(context, R.layout.menu_layout, this)
         view.apply {
             recyclerView = findViewById(R.id.list_menu)
+            cardView = findViewById(R.id.card_container)
+            constraintLayout = findViewById(R.id.constraint_container)
             recyclerView.apply {
                 adapter = list_adapter
             }
         }
+
+    }
+
+    fun setCardBackgroundColor(color: Int){
+        cardView.setCardBackgroundColor(color)
+        constraintLayout.setBackgroundColor(color)
     }
 
     fun addItem(id: Int,icon:Int,isSelected:Boolean) {
@@ -53,13 +59,16 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
 
     fun setSelectedTint(color: Int) {
         Constant.selectedTintActive = true
+        Constant.selectedImageChange = false
         Constant.selectedTint = color
         list_adapter.notifyDataSetChanged()
     }
 
     fun setSelectedImageResource(drawable: Int) {
+        Constant.selectedTintActive = false
         Constant.selectedImageChange = true
-        Constant.image=list_adapter.setselectedImageResource(drawable)
+        Constant.image = 0
+        Constant.image=list_adapter.setSelectedImageResource(drawable)
         list_adapter.notifyDataSetChanged()
     }
 
@@ -71,10 +80,14 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         list_adapter.notifyDataSetChanged()
     }
 
+    fun setSelectedImageSize(height:Int,width:Int) {
+        list_adapter.notifyDataSetChanged()
+    }
+
     override fun onClickListener(menuitem: MenuItem, position: Int) {
         listener?.onClickItem(menuitem.id)
-        if (actionListener != null) {
-            actionListener!!.clickListener(menuitem)
+        if (clickListener != null) {
+            clickListener!!.onClickListener(menuitem)
         }
     }
 
@@ -88,8 +101,8 @@ class MenuView(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
     }
 
 
-    fun setCallback(actionListener: ActionListener) {
-        this.actionListener = actionListener
+    fun setCallback(clickListener: ClickListener) {
+        this.clickListener = clickListener
     }
 
 }

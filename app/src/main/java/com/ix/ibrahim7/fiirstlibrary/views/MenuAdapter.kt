@@ -14,26 +14,22 @@ import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.fiirstlibrary.R
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.iconTint
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.iconTintActive
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.image
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedImageChange
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedItemPos
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedTint
+import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedTintActive
 import kotlinx.android.synthetic.main.item_menu.view.*
 import java.util.*
 
 
 class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemclick: onClick) :
-        RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+    RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
-    private var selectedItemPos = 0
-
-    /*var selectedTint:Int?=null
-    var iconTint:Int?=null
-
-    var selectedTintActive=false
-    var iconTintActive=false
-    var selectedImageChange=false
-
-    var image=0*/
 
     class MenuViewHolder(item: View) : RecyclerView.ViewHolder(item)
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -43,7 +39,7 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
         )
     }
 
-    override fun getItemCount()= data.size
+    override fun getItemCount() = data.size
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -52,45 +48,45 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
         val currentItem = data[position]
 
         holder.itemView.apply {
-          when {
-              Constant.selectedTintActive -> {
-                  item_menu_selected.drawable.setTint(Constant.selectedTint!!)
-                  /* Log.e("eee selected",selectedTintActive.toString())
-                                Log.e("eee icon",iconTintActive.toString())*/
-              }
-              Constant.iconTintActive -> {
-                  /* Log.e("eee icon",iconTintActive.toString())*/
-                  item_menu_icon.setColorFilter(Constant.iconTint!!)
-              }
-              Constant.selectedImageChange -> {
-                  item_menu_selected.setImageResource(Constant.image)
-                  // notifyDataSetChanged()
-              }
-          }
+            when {
+                selectedImageChange -> {
+                    item_menu_selected.setImageResource(image)
+                   // Log.e("eee selectedImageChange","$iconTintActive || $selectedImageChange || $selectedTintActive")
+                }
+                selectedTintActive -> {
+                    item_menu_selected.setImageResource(R.drawable.ovel)
+                    item_menu_selected.drawable.setTint(selectedTint!!)
+                }
+            }
+
+            if (iconTintActive) item_menu_icon.setColorFilter(iconTint!!)
+
 
             item_menu_icon.setImageResource(currentItem.icon)
             if (currentItem.isSelected)
-                item_menu_selected.visibility=View.VISIBLE
+                item_menu_selected.visibility = View.VISIBLE
             else
-                item_menu_selected.visibility=View.INVISIBLE
+                item_menu_selected.visibility = View.INVISIBLE
 
             setOnClickListener {
-                itemclick.onClickListener(currentItem,holder.adapterPosition)
-                data[selectedItemPos].isSelected=false
-                data[position].isSelected=true
-                selectedItemPos =position
-               notifyDataSetChanged()
+                itemclick.onClickListener(currentItem, holder.adapterPosition)
+                data[selectedItemPos].isSelected = false
+                data[position].isSelected = true
+                selectedItemPos = position
+
+                iconTintActive =iconTintActive
+                selectedImageChange =selectedImageChange
+                selectedTintActive =selectedTintActive
+                notifyDataSetChanged()
             }
 
         }
 
     }
 
-
-    fun setselectedImageResource(drawable: Int):Int{
+    fun setSelectedImageResource(drawable: Int): Int {
         return drawable
     }
-
 
 
     interface onClick {

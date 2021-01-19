@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.ix.ibrahim7.fiirstlibrary.views.ActionListener
+import com.ix.ibrahim7.fiirstlibrary.views.ClickListener
 import com.ix.ibrahim7.fiirstlibrary.views.MenuItem
 import com.ix.ibrahim7.fiirstlibrary.views.MenuView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
 
-class MainActivity : AppCompatActivity(), ActionListener {
+class MainActivity : AppCompatActivity(), ClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,31 +20,39 @@ class MainActivity : AppCompatActivity(), ActionListener {
             addItem(55, R.drawable.ic_baseline_home_black, true)
             addItem(44, R.drawable.ic_baseline_home_black, false)
             addItem(33, R.drawable.ic_baseline_home_black, false)
+
+
+            // TODO TO CHANGE CARD BACKGROUND COLOR
+            //setCardBackgroundColor(Color.parseColor("#181C23"))
+
         }
 
 
-        menu1.apply {
-            GlobalScope.launch {
-             withContext(Dispatchers.Main) {
-                 setIconTint(Color.BLUE)
-                // delay(1000)
-                  //setSelectedTint(Color.RED)
-                 delay(1000)
-                 setSelectedImageResource(R.drawable.ic_launcher_background)
-             }
-            }
+        /*menu1.apply {
+            setSelectedImageResource(R.drawable.ic_launcher_background)
+            setIconTint(Color.BLUE)
+        }*/
+
+        btn_change_selected_color.setOnClickListener {
+            menu1.setSelectedTint(Color.RED)
+        }
+
+        btn_change_icon_tint.setOnClickListener {
+            menu1.setIconTint(Color.BLUE)
+        }
+
+        btn_change_selected_image.setOnClickListener {
+            menu1.setSelectedImageResource(R.drawable.ic_launcher_background)
         }
 
 
-        /*
-        to active the on ActionListener Class you must set the callback
-         */
+
+        // TODO TO ACTIVE THE ON ACTIONLISTENER CLASS YOU MUST SET THE CALLBACK
         menu1.setCallback(this)
 
 
-        /*
-            the setclickItemListener return the id
-         */
+
+        // TODO THE SETCLICKITEMLISTENER RETURN THE ID
         menu1.setClickItemListener(object : MenuView.OnClickItemListener {
             override fun onClickItem(id: Int) {
                 when (id) {
@@ -62,8 +69,8 @@ class MainActivity : AppCompatActivity(), ActionListener {
 
     }
 
-
-    override fun clickListener(item: MenuItem) {
+    //TODO THE RESULT OF CALLBACK OF THE CLICKLISTENER INTERFACE
+    override fun onClickListener(item: MenuItem) {
         Log.e("eee click", item.id.toString())
     }
 }
