@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.ix.ibrahim7.fiirstlibrary.R
 
 
 class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, attr),
