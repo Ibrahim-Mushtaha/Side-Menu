@@ -1,4 +1,4 @@
-package com.ix.ibrahim7.fiirstlibrary
+package com.ix.ibrahim7.SideMenu
 
 import org.junit.Test
 

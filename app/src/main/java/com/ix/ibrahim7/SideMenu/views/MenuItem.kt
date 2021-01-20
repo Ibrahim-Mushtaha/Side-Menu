@@ -1,4 +1,4 @@
-package com.ix.ibrahim7.fiirstlibrary.views
+package com.ix.ibrahim7.SideMenu.views
 
 data class MenuItem(
     val id:Int=0,

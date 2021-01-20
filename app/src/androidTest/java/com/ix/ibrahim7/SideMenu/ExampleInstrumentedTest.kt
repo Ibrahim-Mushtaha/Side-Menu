@@ -1,4 +1,4 @@
-package com.ix.ibrahim7.fiirstlibrary
+package com.ix.ibrahim7.SideMenu
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.ix.ibrahim7.fiirstlibrary.views.MenuView
+    <com.ix.ibrahim7.SideMenu.views.MenuView
         android:id="@+id/menu1"
         android:layout_width="wrap_content"
         android:layout_height="200dp"

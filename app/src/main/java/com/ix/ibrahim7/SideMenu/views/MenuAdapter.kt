@@ -1,26 +1,20 @@
-package com.ix.ibrahim7.fiirstlibrary.views
+package com.ix.ibrahim7.SideMenu.views
 
-import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.ix.ibrahim7.fiirstlibrary.R
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.iconTint
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.iconTintActive
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.image
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedImageChange
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedItemPos
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedTint
-import com.ix.ibrahim7.fiirstlibrary.views.Constant.selectedTintActive
+import com.ix.ibrahim7.SideMenu.R
+import com.ix.ibrahim7.SideMenu.views.Constant.iconTint
+import com.ix.ibrahim7.SideMenu.views.Constant.iconTintActive
+import com.ix.ibrahim7.SideMenu.views.Constant.image
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedImageChange
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedItemPos
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedTint
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedTintActive
 import kotlinx.android.synthetic.main.item_menu.view.*
 import java.util.*
 

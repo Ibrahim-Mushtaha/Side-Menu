@@ -1,6 +1,4 @@
-package com.ix.ibrahim7.fiirstlibrary.views
-
-import android.view.View
+package com.ix.ibrahim7.SideMenu.views
 
 interface ClickListener {
 
