@@ -1,2 +1,3 @@
+include ':SideMenuLibrary'
 include ':app'
 rootProject.name = "Fiirst Library"
