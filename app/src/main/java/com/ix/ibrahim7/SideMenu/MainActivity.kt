@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.ix.ibrahim7.SideMenu.views.ClickListener
+import com.ix.ibrahim7.SideMenu.views.Constant.resizeSelectedIcon
 import com.ix.ibrahim7.SideMenu.views.MenuItem
 import com.ix.ibrahim7.SideMenu.views.MenuView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ClickListener {
+
+    val size = 15
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,10 +24,14 @@ class MainActivity : AppCompatActivity(), ClickListener {
             addItem(44, R.drawable.ic_baseline_home_black, false)
             addItem(33, R.drawable.ic_baseline_home_black, false)
 
-
             // TODO TO CHANGE CARD BACKGROUND COLOR
             //setCardBackgroundColor(Color.parseColor("#181C23"))
 
+        }
+
+        btn_change_icon_size.setOnClickListener {
+            menu1.setSelectedImageSize(40,40)
+            menu1.setIconTint(Color.BLUE)
         }
 
 
@@ -42,7 +49,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         }
 
         btn_change_selected_image.setOnClickListener {
-            menu1.setSelectedImageResource(R.drawable.ic_launcher_background)
+            menu1.setSelectedImageResource(R.drawable.ic_launch)
         }
 
 

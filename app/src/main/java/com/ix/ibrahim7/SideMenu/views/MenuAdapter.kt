@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.SideMenu.R
+import com.ix.ibrahim7.SideMenu.views.Constant.Height
+import com.ix.ibrahim7.SideMenu.views.Constant.Width
 import com.ix.ibrahim7.SideMenu.views.Constant.iconTint
 import com.ix.ibrahim7.SideMenu.views.Constant.iconTintActive
 import com.ix.ibrahim7.SideMenu.views.Constant.image
+import com.ix.ibrahim7.SideMenu.views.Constant.resizeSelectedIcon
 import com.ix.ibrahim7.SideMenu.views.Constant.selectedImageChange
 import com.ix.ibrahim7.SideMenu.views.Constant.selectedItemPos
 import com.ix.ibrahim7.SideMenu.views.Constant.selectedTint
@@ -51,6 +54,10 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
                     item_menu_selected.setImageResource(R.drawable.ovel)
                     item_menu_selected.drawable.setTint(selectedTint!!)
                 }
+            }
+            if (resizeSelectedIcon){
+                item_menu_selected.layoutParams.width = Width
+                item_menu_selected.layoutParams.height = Height
             }
 
             if (iconTintActive) item_menu_icon.setColorFilter(iconTint!!)

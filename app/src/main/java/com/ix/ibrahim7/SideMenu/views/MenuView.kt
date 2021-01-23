@@ -4,10 +4,18 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.SideMenu.R
+import com.ix.ibrahim7.SideMenu.views.Constant.Height
+import com.ix.ibrahim7.SideMenu.views.Constant.Width
+import com.ix.ibrahim7.SideMenu.views.Constant.image
+import com.ix.ibrahim7.SideMenu.views.Constant.resizeSelectedIcon
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedImageChange
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedTint
+import com.ix.ibrahim7.SideMenu.views.Constant.selectedTintActive
 
 
 class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, attr),
@@ -58,17 +66,17 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     }
 
     fun setSelectedTint(color: Int) {
-        Constant.selectedTintActive = true
-        Constant.selectedImageChange = false
-        Constant.selectedTint = color
+        selectedTintActive = true
+        selectedImageChange = false
+        selectedTint = color
         list_adapter.notifyDataSetChanged()
     }
 
     fun setSelectedImageResource(drawable: Int) {
-        Constant.selectedTintActive = false
-        Constant.selectedImageChange = true
-        Constant.image = 0
-        Constant.image=list_adapter.setSelectedImageResource(drawable)
+       selectedTintActive = false
+        selectedImageChange = true
+        image = 0
+        image=list_adapter.setSelectedImageResource(drawable)
         list_adapter.notifyDataSetChanged()
     }
 
@@ -81,6 +89,9 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     }
 
     fun setSelectedImageSize(height:Int,width:Int) {
+        resizeSelectedIcon = true
+        Height = height
+        Width = width
         list_adapter.notifyDataSetChanged()
     }
 
