@@ -4,12 +4,20 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.ix.ibrahim7.sidemenulibrary.Constant.Height
+import com.ix.ibrahim7.sidemenulibrary.Constant.Width
+import com.ix.ibrahim7.sidemenulibrary.Constant.image
+import com.ix.ibrahim7.sidemenulibrary.Constant.resizeSelectedIcon
+import com.ix.ibrahim7.sidemenulibrary.Constant.selectedImageChange
+import com.ix.ibrahim7.sidemenulibrary.Constant.selectedTint
+import com.ix.ibrahim7.sidemenulibrary.Constant.selectedTintActive
 
 
-class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, attr),
+class MenuView(context: Context,attr: AttributeSet) : FrameLayout(context, attr),
     MenuAdapter.onClick {
 
     var clickListener: ClickListener? = null
@@ -18,7 +26,6 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     private val list_adapter by lazy {
         MenuAdapter(context, ArrayList(), this)
     }
-
 
     lateinit var recyclerView: RecyclerView
     lateinit var cardView: CardView
@@ -57,17 +64,16 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     }
 
     fun setSelectedTint(color: Int) {
-        Constant.selectedTintActive = true
-        Constant.selectedImageChange = false
-        Constant.selectedTint = color
+        selectedTintActive = true
+        selectedImageChange = false
+        selectedTint = color
         list_adapter.notifyDataSetChanged()
     }
 
     fun setSelectedImageResource(drawable: Int) {
-        Constant.selectedTintActive = false
-        Constant.selectedImageChange = true
-        Constant.image = 0
-        Constant.image=list_adapter.setSelectedImageResource(drawable)
+       selectedTintActive = false
+        selectedImageChange = true
+        image=list_adapter.setSelectedImageResource(drawable)
         list_adapter.notifyDataSetChanged()
     }
 
@@ -80,6 +86,9 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     }
 
     fun setSelectedImageSize(height:Int,width:Int) {
+        resizeSelectedIcon = true
+        Height = height
+        Width = width
         list_adapter.notifyDataSetChanged()
     }
 
