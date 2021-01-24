@@ -47,7 +47,7 @@ class MenuAdapter(var context: Context, var data: ArrayList<MenuItem>, val itemc
         holder.itemView.apply {
             when {
                 selectedImageChange -> {
-                    item_menu_selected.setImageResource(image)
+                    item_menu_selected.setImageResource(image!!)
                    // Log.e("eee selectedImageChange","$iconTintActive || $selectedImageChange || $selectedTintActive")
                 }
                 selectedTintActive -> {

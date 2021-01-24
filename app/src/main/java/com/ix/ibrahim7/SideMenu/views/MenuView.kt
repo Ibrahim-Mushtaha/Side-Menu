@@ -18,7 +18,7 @@ import com.ix.ibrahim7.SideMenu.views.Constant.selectedTint
 import com.ix.ibrahim7.SideMenu.views.Constant.selectedTintActive
 
 
-class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, attr),
+class MenuView(context: Context,attr: AttributeSet) : FrameLayout(context, attr),
     MenuAdapter.onClick {
 
     var clickListener: ClickListener? = null
@@ -27,7 +27,6 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     private val list_adapter by lazy {
         MenuAdapter(context, ArrayList(), this)
     }
-
 
     lateinit var recyclerView: RecyclerView
     lateinit var cardView: CardView
@@ -75,7 +74,6 @@ class MenuView(context: Context, val attr: AttributeSet) : FrameLayout(context, 
     fun setSelectedImageResource(drawable: Int) {
        selectedTintActive = false
         selectedImageChange = true
-        image = 0
         image=list_adapter.setSelectedImageResource(drawable)
         list_adapter.notifyDataSetChanged()
     }
